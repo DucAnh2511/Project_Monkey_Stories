@@ -30,30 +30,41 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function getAll()
     {
-        return $this->model->all();
+        $data = $this->model->all();
+        return response()->json($data);
     }
 
     public function find($id)
     {
-        $result = $this->model->find($id);
-
-        return $result;
+        $data = $this->model->find($id);
+        return response()->json($data);
     }
 
     public function create($attributes = [])
     {
-        return $this->model->create($attributes);
+        $this->model->create($attributes);
+        return response()->json([
+            'status'=>200,
+            'mesage'=>'Create data success!'
+        ],200);
+
     }
 
     public function update($id, $attributes = [])
     {
-        $result = $this->find($id);
+        $result = $this->find($id)->first();
         if ($result) {
             $result->update($attributes);
-            return $result;
+            return response()->json([
+                'status' => 200,
+                'message' => 'Update data success!'
+            ],200);
         }
 
-        return false;
+        return response()->json([
+        'status' => 422,
+        'message' => 'Fail to update, please try again!'
+    ],422);
     }
 
     public function delete($id)
@@ -62,7 +73,10 @@ abstract class BaseRepository implements RepositoryInterface
         if ($result) {
             $result->delete();
 
-            return true;
+            return response()->json([
+                'status'=>200,
+                'message'=>'Delete data success!'
+            ],200);
         }
 
         return false;
