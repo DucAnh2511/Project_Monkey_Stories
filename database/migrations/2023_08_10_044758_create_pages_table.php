@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stories', function (Blueprint $table) {
-            $table->id('story_id');
-            $table->string('name');
-            $table->string('thumbnail');
-            $table->integer('coinEarn');
+        Schema::create('pages', function (Blueprint $table) {
+            $table->id('page_id');
+            $table->integer('story_id');
+            $table->string('background');
+            $table->integer('page_order');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stories');
+        Schema::dropIfExists('pages');
     }
 };
