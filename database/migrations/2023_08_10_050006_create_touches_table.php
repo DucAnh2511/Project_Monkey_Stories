@@ -14,10 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('touches', function (Blueprint $table) {
-            $table->id('touch_id');
-            $table->integer('page_id');
-            $table->integer('text_id');
+            $table->id();
+            $table->unsignedBigInteger('page_id');
+            $table->unsignedBigInteger('text_id');
             $table->string('data');
+            $table->foreign('page_id')->references('id')->on('pages');
+            $table->foreign('text_id')->references('id')->on('texts');
+
             $table->timestamps();
         });
     }
@@ -29,6 +32,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('touches');
     }
 };

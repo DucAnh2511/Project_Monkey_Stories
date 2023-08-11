@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('stories', function (Blueprint $table) {
-            $table->id('z');
+            $table->id();
             $table->string('name');
             $table->string('thumbnail');
             $table->integer('coinEarn');
