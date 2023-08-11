@@ -34,7 +34,7 @@ abstract class BaseRepository implements RepositoryInterface
         return response()->json($data);
     }
 
-    public function find($id)
+    public function show($id)
     {
         $data = $this->model->find($id);
         return response()->json($data);
@@ -52,7 +52,7 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function update($id, $attributes = [])
     {
-        $result = $this->find($id)->first();
+        $result = $this->model->find($id);
         if ($result) {
             $result->update($attributes);
             return response()->json([
@@ -69,7 +69,7 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function delete($id)
     {
-        $result = $this->find($id);
+        $result = $this->model->find($id);
         if ($result) {
             $result->delete();
 
@@ -79,6 +79,9 @@ abstract class BaseRepository implements RepositoryInterface
             ],200);
         }
 
-        return false;
+        return response()->json([
+            'status'=>404,
+            'message'=>'ERROR please try again!'
+        ],404);
     }
 }

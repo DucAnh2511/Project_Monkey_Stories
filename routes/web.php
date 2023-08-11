@@ -12,12 +12,18 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use App\Http\Controllers\StoriesController;
 Route::get('/', function () {
     return view('welcome');
 });
 Route::prefix('api')->group(function (){
-
+    Route::prefix('story')->group(function (){
+        Route::get('/',[StoriesController::class,'index'])->name('story.index');
+        Route::get('/{id}',[StoriesController::class,'show'])->name('story.show');
+        Route::post('/',[StoriesController::class,'create'])->name('story.create');
+        Route::put('/{id}',[StoriesController::class,'update'])->name('story.update');
+        Route::delete('/{id}',[StoriesController::class,'delete'])->name('story.delete');
+    });
 
 });
 

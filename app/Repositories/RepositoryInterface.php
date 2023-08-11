@@ -15,7 +15,7 @@ interface RepositoryInterface
      * @param $id
      * @return mixed
      */
-    public function find($id);
+    public function show($id);
 
     /**
      * Create

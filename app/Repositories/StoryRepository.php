@@ -1,12 +1,11 @@
 <?php
 namespace App\Repositories;
-
-
+use App\Models\Stories;
 
 class StoryRepository extends BaseRepository {
     public function getModel()
     {
         // TODO: Implement getModel() method.
-        return App\Models\Stories :: class;
+        return Stories::class;
     }
 }
