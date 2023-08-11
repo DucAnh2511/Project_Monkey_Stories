@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('touches', function (Blueprint $table) {
+        Schema::create('audios', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('page_id');
-            $table->unsignedBigInteger('text_id');
-            $table->string('data');
-            $table->foreign('page_id')->references('id')->on('pages');
+            $table ->unsignedBigInteger('text_id');
+            $table->string('title');
             $table->foreign('text_id')->references('id')->on('texts');
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ return new class extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('touches');
+        Schema::dropIfExists('audios');
     }
 };

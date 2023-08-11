@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\StoryRepository;
+use App\Repositories\AudioRepository;
 use Illuminate\Http\Request;
 
-class StoriesController extends Controller
+class AudiosController extends Controller
 {
-    //
     protected $classRepository;
-    public function __construct(StoryRepository $classRepository)
+    public function __construct(AudioRepository $classRepository)
     {
         $this->classRepository = $classRepository;
     }
