@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Texts;
+use App\Models\User;
 use App\Repositories\AudioRepository;
 use App\Repositories\PageRepository;
 use App\Repositories\TextRepository;
@@ -22,5 +23,11 @@ class DatabaseSeeder extends Seeder
             TextsSeeder::class,
             AudiosSeeder::class
         ]);
+        //User::factory(10)->create();
+
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
     }
 }
