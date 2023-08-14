@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('audios', function (Blueprint $table) {
-            $table->id();
-            $table ->unsignedBigInteger('text_id');
-            $table->string('link');
-            $table->foreign('text_id')->references('id')->on('texts');
-            $table->timestamps();
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -29,7 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('audios');
+        Schema::dropIfExists('password_resets');
     }
 };
