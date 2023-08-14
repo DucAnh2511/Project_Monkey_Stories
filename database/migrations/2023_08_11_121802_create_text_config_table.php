@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('text_config', function (Blueprint $table) {
+        Schema::create('text__config', function (Blueprint $table) {
             $table->unsignedBigInteger('page_id');
             $table->unsignedBigInteger('text_id');
             $table->string('position');
@@ -31,6 +31,6 @@ return new class extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('text__configs');
+        Schema::dropIfExists('text__config');
     }
 };
