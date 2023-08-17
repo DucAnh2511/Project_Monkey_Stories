@@ -4,28 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Repositories\PageRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class PagesController extends Controller
+class PagesController extends CRUD_Base_Controller
 {
     //
-    protected $classRepository;
-    public function __construct(PageRepository $classRepository)
+
+    public function getRepo()
     {
-        $this->classRepository = $classRepository;
+        // TODO: Implement getRepo() method.
+        return PageRepository::class;
     }
-    public function index(){
-        return $this->classRepository->getAll();
+
+    public function createValidate(Request $request)
+    {
+        // TODO: Implement createValidate() method.
+        $validator = Validator::make($request->all(),[
+            //Validate below here
+        ]);
+        if($validator->failed()){
+            return $validator->messages();
+        }
+        return null;
     }
-    public function create(Request $request){
-        return $this->classRepository->create($request->all());
-    }
-    public function show($id){
-        return $this->classRepository->show($id);
-    }
-    public function update(Request $request,$id){
-        return $this->classRepository->update($id,$request->all());
-    }
-    public  function delete($id){
-        return $this->classRepository->delete($id);
+
+    public function updateValidate(Request $request)
+    {
+        // TODO: Implement updateValidate() method.
+        $validator = Validator::make($request->all(),[
+            //Validate below here
+        ]);
+        if($validator->failed()){
+            return $validator->messages();
+        }
+        return null;
     }
 }
