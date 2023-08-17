@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             TextsSeeder::class,
-            AudiosSeeder::class
+            AudiosSeeder::class,
+            StoriesSeeder::class
         ]);
         //User::factory(10)->create();
 
