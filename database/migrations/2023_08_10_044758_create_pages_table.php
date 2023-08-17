@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('story_id');
             $table->string('background');
             $table->integer('page_order');
-            $table->foreign('story_id')->references('id')->on('storiesSeeder');
+            $table->foreign('story_id')->references('id')->on('stories');
             $table->timestamps();
         });
     }
