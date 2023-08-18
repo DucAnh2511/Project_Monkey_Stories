@@ -21,12 +21,17 @@ class PagesController extends CRUD_Base_Controller
         // TODO: Implement createValidate() method.
         $validator = Validator::make($request->all(),[
             //Validate below here
+            'story_id'=>['required','integer','min:1'],
+            'background'=>['required'],
+            'page_order'=>['required','integer','min:1']
         ]);
         $message = $validator->messages();
         if($validator->failed()){
             return $message;
         }
-        return null;
+        return $request->only([
+            'story_id','background','page_order'
+        ]);
     }
 
     public function updateValidate(Request $request)
@@ -34,11 +39,16 @@ class PagesController extends CRUD_Base_Controller
         // TODO: Implement updateValidate() method.
         $validator = Validator::make($request->all(),[
             //Validate below here
+            'story_id'=>['required','integer','min:1'],
+            'background'=>['required'],
+            'page_order'=>['required','integer','min:1']
         ]);
         $message = $validator->messages();
         if($validator->failed()){
             return $message;
         }
-        return null;
+        return $request->only([
+            'story_id','background','page_order'
+        ]);
     }
 }
