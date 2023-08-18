@@ -21,8 +21,9 @@ class AudiosController extends CRUD_Base_Controller
         $validator = Validator::make($request->all(),[
             //Validate below here
         ]);
+        $message = $validator->messages();
         if($validator->failed()){
-            return $validator->messages();
+            return $message;
         }
         return null;
     }
@@ -33,8 +34,9 @@ class AudiosController extends CRUD_Base_Controller
         $validator = Validator::make($request->all(),[
             //Validate below here
         ]);
+        $message = $validator->messages();
         if($validator->failed()){
-            return $validator->messages();
+            return $message;
         }
         return null;
     }

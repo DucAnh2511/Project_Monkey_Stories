@@ -29,24 +29,32 @@ abstract class CRUD_Base_Controller extends Controller
         return $this->modelRepo->getAll();
     }
     public function create(Request $request){
+        //check validate
         $res = $this->createValidate($request);
-        if( $res == null){
-            return $this->modelRepo->create($request->all());
+
+        //$res return string if request validate fail or array with accept keys when pass
+        //Pass validate
+        if(is_array($res)){
+            return $this->modelRepo->create($res);
         }
+        //Fail validate
         else return response()->json([
+            'status'=>422,
             'message'=>$res
-        ]);
+        ],422);
 
     }
     public function show($id){
         return $this->modelRepo->show($id);
     }
     public function update(Request $request,$id){
+        //check validate
         $res = $this->updateValidate($request);
-        if($res == null){
-            return $this->modelRepo->update($id,$request->all());
+        if(is_array($res)){
+            return $this->modelRepo->update($id,$res);
         }
         else return response()->json([
+            'status'=>422,
             'message'=>$res
         ]);
     }
