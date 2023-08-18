@@ -20,12 +20,16 @@ class AudiosController extends CRUD_Base_Controller
         // TODO: Implement createValidate() method.
         $validator = Validator::make($request->all(),[
             //Validate below here
+            'text_id'=>['required','integer','min:1'],
+            'link'=>['required']
         ]);
         $message = $validator->messages();
         if($validator->failed()){
             return $message;
         }
-        return null;
+        return $request->only([
+            'text_id','link'
+        ]);
     }
 
     public function updateValidate(Request $request)
@@ -33,11 +37,15 @@ class AudiosController extends CRUD_Base_Controller
         // TODO: Implement updateValidate() method.
         $validator = Validator::make($request->all(),[
             //Validate below here
+            'text_id'=>['required','integer','min:1'],
+            'link'=>['required']
         ]);
         $message = $validator->messages();
         if($validator->failed()){
             return $message;
         }
-        return null;
+        return $request->only([
+            'text_id','link'
+        ]);
     }
 }
