@@ -21,12 +21,17 @@ class TouchesController extends CRUD_Base_Controller
         // TODO: Implement createValidate() method.
         $validator = Validator::make($request->all(),[
             //Validate below here
+            'page_id'=>['required','integer','min:1'],
+            'text_id'=>['required','integer','min:1'],
+            'data'=>['required']
         ]);
         $message = $validator->messages();
         if($validator->failed()){
             return $message;
         }
-        return null;
+        return $request->only([
+            'page_id','text_id','data'
+        ]);
     }
 
     public function updateValidate(Request $request)
@@ -34,11 +39,16 @@ class TouchesController extends CRUD_Base_Controller
         // TODO: Implement updateValidate() method.
         $validator = Validator::make($request->all(),[
             //Validate below here
+            'page_id'=>['required','integer','min:1'],
+            'text_id'=>['required','integer','min:1'],
+            'data'=>['required']
         ]);
         $message = $validator->messages();
         if($validator->failed()){
             return $message;
         }
-        return null;
+        return $request->only([
+            'page_id','text_id','data'
+        ]);
     }
 }
