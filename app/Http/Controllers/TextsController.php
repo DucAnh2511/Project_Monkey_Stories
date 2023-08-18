@@ -21,12 +21,15 @@ class TextsController extends CRUD_Base_Controller
         // TODO: Implement createValidate() method.
         $validator = Validator::make($request->all(),[
             //Validate below here
+            'text'=>['required']
         ]);
         $message = $validator->messages();
         if($validator->failed()){
             return $message;
         }
-        return null;
+        return $request->only([
+            'text'
+        ]);
     }
 
     public function updateValidate(Request $request)
@@ -34,11 +37,14 @@ class TextsController extends CRUD_Base_Controller
         // TODO: Implement updateValidate() method.
         $validator = Validator::make($request->all(),[
             //Validate below here
+            'text'=>['required']
         ]);
         $message = $validator->messages();
         if($validator->failed()){
             return $message;
         }
-        return null;
+        return $request->only([
+            'text'
+        ]);
     }
 }
